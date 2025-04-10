@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -8,9 +9,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { eventsData } from "@/lib/data"
 
 export default function EventPage({ params }: { params: { id: string } }) {
-  const event = eventsData.find((e) => e.id === params.id) || eventsData[0]
+  const eventId = React.use(params).id
+  const event = eventsData.find((e) => e.id === eventId) || eventsData[0]
   const [isRsvpd, setIsRsvpd] = useState(false)
 
   const toggleRsvp = () => {
@@ -216,77 +219,6 @@ export default function EventPage({ params }: { params: { id: string } }) {
     </div>
   )
 }
-
-const eventsData = [
-  {
-    id: "1",
-    name: "Photography Exhibition",
-    description: "Annual showcase of student photography work with guest speakers.",
-    fullDescription:
-      "Join us for the annual Photography Club Exhibition, showcasing the best work from our talented student photographers. This year's theme is 'Perspectives' - exploring how different viewpoints can change our understanding of the world around us.\n\nThe exhibition will feature over 50 photographs from 20 student photographers, along with special guest presentations from professional photographers in the industry.\n\nRefreshments will be provided, and all attendees will receive a digital catalog of the exhibition. This is a great opportunity to support your fellow students and experience the creative talent on campus.",
-    image: "/images/photo-exhibition.png",
-    date: "Apr 15",
-    fullDate: "April 15, 2023",
-    time: "3:00 PM - 7:00 PM",
-    location: "Student Center Gallery",
-    locationDetails: "Second floor, east wing of the Student Center",
-    club: "Photography Club",
-    clubId: "1",
-    clubLogo: "/images/photography-club.png",
-    clubDescription: "A community of photography enthusiasts",
-    attendees: 45,
-    cost: "Free",
-    contactEmail: "photo@university.edu",
-    schedule: [
-      {
-        time: "3:00 PM",
-        title: "Exhibition Opens",
-        description: "Doors open to the public",
-      },
-      {
-        time: "3:30 PM",
-        title: "Welcome Address",
-        description: "Opening remarks from the Photography Club President",
-      },
-      {
-        time: "4:00 PM",
-        title: "Guest Speaker: Sarah Chen",
-        description: "Professional photographer discussing 'The Art of Visual Storytelling'",
-      },
-      {
-        time: "5:00 PM",
-        title: "Student Presentations",
-        description: "Selected photographers discuss their work",
-      },
-      {
-        time: "6:00 PM",
-        title: "Reception",
-        description: "Refreshments and networking",
-      },
-      {
-        time: "7:00 PM",
-        title: "Exhibition Closes",
-        description: "End of event",
-      },
-    ],
-    speakers: [
-      {
-        id: "s1",
-        name: "Sarah Chen",
-        title: "Professional Photographer",
-        bio: "Award-winning photographer with over 10 years of experience in portrait and landscape photography.",
-        avatar: "/placeholder.svg",
-      },
-      {
-        id: "s2",
-        name: "David Wilson",
-        title: "Photography Professor",
-        bio: "Faculty member specializing in digital photography and post-processing techniques.",
-        avatar: "/placeholder.svg",
-      },
-    ],
-  },
-]
 
 const similarEvents = [
   {

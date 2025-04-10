@@ -277,9 +277,9 @@ const clubsData = [
       "Explore the art of photography with like-minded enthusiasts. Our club welcomes photographers of all skill levels, from beginners to advanced. We organize workshops, photo walks, and exhibitions throughout the academic year.",
     mission:
       "To foster creativity and technical skills in photography while building a community of passionate photographers on campus.",
-    image: "/images/photography-club.png",
-    bannerImage: "/images/photo-exhibition.png", // Using a related image as banner
-    logo: "/images/photography-club.png",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop",
+    logo: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=200&auto=format&fit=crop",
     memberCount: 120,
     category: "Arts",
     founded: "2015",
@@ -293,26 +293,26 @@ const clubsData = [
       { platform: "Twitter", url: "https://twitter.com" },
     ],
     leaders: [
-      { id: "l1", name: "Emma Johnson", role: "President", avatar: "/placeholder.svg" },
-      { id: "l2", name: "Michael Chen", role: "Vice President", avatar: "/placeholder.svg" },
-      { id: "l3", name: "Sophia Rodriguez", role: "Treasurer", avatar: "/placeholder.svg" },
+      { id: "l1", name: "Emma Johnson", role: "President", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" },
+      { id: "l2", name: "Michael Chen", role: "Vice President", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" },
+      { id: "l3", name: "Sophia Rodriguez", role: "Treasurer", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" },
     ],
     members: [
-      { id: "m1", name: "Alex Kim", avatar: "/placeholder.svg" },
-      { id: "m2", name: "Taylor Smith", avatar: "/placeholder.svg" },
-      { id: "m3", name: "Jordan Lee", avatar: "/placeholder.svg" },
-      { id: "m4", name: "Casey Brown", avatar: "/placeholder.svg" },
-      { id: "m5", name: "Riley Johnson", avatar: "/placeholder.svg" },
-      { id: "m6", name: "Jamie Wilson", avatar: "/placeholder.svg" },
-      { id: "m7", name: "Quinn Davis", avatar: "/placeholder.svg" },
-      { id: "m8", name: "Morgan White", avatar: "/placeholder.svg" },
+      { id: "m1", name: "Alex Kim", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" },
+      { id: "m2", name: "Taylor Smith", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" },
+      { id: "m3", name: "Jordan Lee", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" },
+      { id: "m4", name: "Casey Brown", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop" },
+      { id: "m5", name: "Riley Johnson", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop" },
+      { id: "m6", name: "Jamie Wilson", avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&auto=format&fit=crop" },
+      { id: "m7", name: "Quinn Davis", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" },
+      { id: "m8", name: "Morgan White", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" },
     ],
     events: [
       {
         id: "e1",
         name: "Photography Exhibition",
         description: "Annual showcase of student photography work with guest speakers.",
-        image: "/images/photo-exhibition.png",
+        image: "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop",
         date: "Apr 15",
         time: "3:00 PM - 7:00 PM",
         location: "Student Center Gallery",
@@ -321,7 +321,7 @@ const clubsData = [
         id: "e2",
         name: "Portrait Photography Workshop",
         description: "Learn techniques for capturing compelling portraits.",
-        image: "/images/workshop.png",
+        image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
         date: "Apr 22",
         time: "4:00 PM - 6:00 PM",
         location: "Arts Building, Room 302",
@@ -330,40 +330,151 @@ const clubsData = [
         id: "e3",
         name: "Campus Photo Walk",
         description: "Explore and photograph beautiful spots around campus.",
-        image: "/placeholder.svg",
+        image: "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop",
         date: "May 5",
         time: "5:30 PM - 7:30 PM",
         location: "Meet at University Fountain",
       },
     ],
     gallery: [
-      "/images/photography-club.png",
-      "/images/photo-exhibition.png",
-      "/images/workshop.png",
-      "/placeholder.svg",
-      "/placeholder.svg",
-      "/placeholder.svg",
+      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop",
     ],
   },
+  {
+    id: "2",
+    name: "Robotics Club",
+    description: "Build and program robots, participate in competitions, and explore the future of automation.",
+    mission: "To advance robotics education and innovation through hands-on projects and competitive challenges.",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?q=80&w=800&auto=format&fit=crop",
+    logo: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=200&auto=format&fit=crop",
+    memberCount: 85,
+    category: "Technology",
+    founded: "2018",
+    email: "robotics@university.edu",
+    meetingDay: "Every Wednesday",
+    meetingTime: "5:00 PM - 7:00 PM",
+    meetingLocation: "Engineering Building, Lab 201",
+    socialMedia: [
+      { platform: "Instagram", url: "https://instagram.com" },
+      { platform: "Twitter", url: "https://twitter.com" }
+    ],
+    leaders: [
+      { id: "l4", name: "David Park", role: "President", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" },
+      { id: "l5", name: "Sarah Lee", role: "Vice President", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" }
+    ],
+    members: [
+      { id: "m9", name: "James Wilson", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" },
+      { id: "m10", name: "Emily Chen", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop" },
+      { id: "m11", name: "Michael Brown", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop" }
+    ],
+    events: [
+      {
+        id: "e4",
+        name: "Robot Building Workshop",
+        description: "Learn to build and program a basic robot.",
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
+        date: "Apr 18",
+        time: "2:00 PM - 5:00 PM",
+        location: "Engineering Lab 201"
+      },
+      {
+        id: "e5",
+        name: "Robotics Competition Prep",
+        description: "Team practice for upcoming robotics competition.",
+        image: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?q=80&w=800&auto=format&fit=crop",
+        date: "Apr 25",
+        time: "4:00 PM - 7:00 PM",
+        location: "Engineering Lab 201"
+      }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop"
+    ]
+  },
+  {
+    id: "3",
+    name: "Coding Club",
+    description: "Learn programming, develop applications, and collaborate on exciting tech projects.",
+    mission: "To foster coding skills and create innovative software solutions while building a supportive tech community.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+    bannerImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
+    logo: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=200&auto=format&fit=crop",
+    memberCount: 150,
+    category: "Technology",
+    founded: "2016",
+    email: "coding@university.edu",
+    meetingDay: "Every Monday",
+    meetingTime: "6:30 PM - 8:30 PM",
+    meetingLocation: "Computer Science Building, Room 405",
+    socialMedia: [
+      { platform: "Twitter", url: "https://twitter.com" },
+      { platform: "Instagram", url: "https://instagram.com" },
+      { platform: "Facebook", url: "https://facebook.com" }
+    ],
+    leaders: [
+      { id: "l6", name: "Ryan Zhang", role: "President", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" },
+      { id: "l7", name: "Jessica Kim", role: "Vice President", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" }
+    ],
+    members: [
+      { id: "m12", name: "Tom Anderson", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" },
+      { id: "m13", name: "Lisa Chen", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" },
+      { id: "m14", name: "Mark Davis", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop" }
+    ],
+    events: [
+      {
+        id: "e6",
+        name: "Web Development Workshop",
+        description: "Learn modern web development with React and Next.js.",
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+        date: "Apr 22",
+        time: "5:00 PM - 7:00 PM",
+        location: "CS Building 405"
+      },
+      {
+        id: "e7",
+        name: "Hackathon Prep Session",
+        description: "Preparation for upcoming university hackathon.",
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
+        date: "Apr 29",
+        time: "3:00 PM - 6:00 PM",
+        location: "CS Building 405"
+      }
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop"
+    ]
+  }
 ]
 
 const relatedClubs = [
   {
     id: "2",
     name: "Film Club",
-    logo: "/images/debate-society.png", // Using a similar image
+    logo: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=200&auto=format&fit=crop",
     category: "Arts",
   },
   {
     id: "3",
     name: "Digital Media Club",
-    logo: "/placeholder.svg",
+    logo: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200&auto=format&fit=crop",
     category: "Arts",
   },
   {
     id: "4",
     name: "Graphic Design Club",
-    logo: "/placeholder.svg",
+    logo: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=200&auto=format&fit=crop",
     category: "Arts",
   },
 ]

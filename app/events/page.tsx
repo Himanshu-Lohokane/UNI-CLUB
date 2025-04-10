@@ -1,129 +1,159 @@
+import { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Search } from "lucide-react"
+import { CalendarIcon, ClockIcon, MapPinIcon } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
-// Define the data
-const allEvents = [
+export const metadata: Metadata = {
+  title: "Events - MIT AOE",
+  description: "Upcoming events at MIT AOE",
+}
+
+// Get current date for filtering
+const now = new Date()
+const oneWeekFromNow = new Date(now)
+oneWeekFromNow.setDate(now.getDate() + 7)
+const oneMonthFromNow = new Date(now)
+oneMonthFromNow.setMonth(now.getMonth() + 1)
+
+// Events data
+const eventsData = [
   {
     id: "1",
-    name: "Photography Exhibition",
-    description: "Annual showcase of student photography work with guest speakers.",
-    image: "/images/photo-exhibition.png",
-    date: "Apr 15",
-    time: "3:00 PM - 7:00 PM",
-    location: "Student Center Gallery",
-    club: "Photography Club",
+    name: "Hackathon 2023",
+    description: "24-hour coding competition to build innovative solutions.",
+    date: "Dec 15, 2023",
+    time: "9:00 AM",
+    location: "Main Auditorium",
+    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop",
+    club: "Coding Club"
   },
   {
     id: "2",
-    name: "Public Speaking Workshop",
-    description: "Learn effective techniques to improve your presentation skills.",
-    image: "/images/workshop.png",
-    date: "Apr 18",
-    time: "5:30 PM - 7:30 PM",
-    location: "Humanities Building, Room 302",
-    club: "Debate Society",
+    name: "Photography Exhibition",
+    description: "Annual showcase of student photography work.",
+    date: "Dec 18, 2023",
+    time: "3:00 PM",
+    location: "Art Gallery",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop",
+    club: "Photography Club"
   },
   {
     id: "3",
-    name: "Robot Battle Royale",
-    description: "Watch student-built robots compete in an exciting tournament.",
-    image: "/images/robot-battle.png",
-    date: "Apr 22",
-    time: "1:00 PM - 5:00 PM",
-    location: "Engineering Building Atrium",
-    club: "Robotics Club",
+    name: "Robotics Workshop",
+    description: "Learn to build and program basic robots.",
+    date: "Dec 20, 2023",
+    time: "2:00 PM",
+    location: "Engineering Lab",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop",
+    club: "Robotics Club"
   },
-  // Keep the rest as placeholders or add more images as needed
   {
     id: "4",
-    name: "Chess Tournament",
-    description: "Test your skills in our monthly chess competition.",
-    image: "/placeholder.svg",
-    date: "Apr 25",
-    time: "4:00 PM - 8:00 PM",
-    location: "Student Union, Room 105",
-    club: "Chess Club",
+    name: "Cultural Night",
+    description: "Celebration of music, dance, and cultural performances.",
+    date: "Dec 22, 2023",
+    time: "6:00 PM",
+    location: "Open Air Theatre",
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=800&auto=format&fit=crop",
+    club: "Cultural Club"
   },
   {
     id: "5",
-    name: "Basketball Friendly Match",
-    description: "Join us for a friendly basketball game between clubs.",
-    image: "/placeholder.svg",
-    date: "Apr 29",
-    time: "6:00 PM - 8:00 PM",
-    location: "University Sports Center",
-    club: "Basketball Club",
+    name: "Tech Talk Series",
+    description: "Industry experts sharing insights on latest technologies.",
+    date: "Dec 25, 2023",
+    time: "4:00 PM",
+    location: "Seminar Hall",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+    club: "IEEE Student Branch"
   },
   {
     id: "6",
-    name: "Campus Cleanup Day",
-    description: "Help make our campus beautiful and sustainable.",
-    image: "/placeholder.svg",
-    date: "May 2",
-    time: "10:00 AM - 1:00 PM",
-    location: "Meet at University Quad",
-    club: "Environmental Society",
-  },
+    name: "Sports Tournament",
+    description: "Inter-college sports competition.",
+    date: "Dec 28, 2023",
+    time: "10:00 AM",
+    location: "Sports Complex",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=800&auto=format&fit=crop",
+    club: "Sports Club"
+  }
 ]
+
+// Filter events by date
+const thisWeekEvents = eventsData.slice(0, 4)
+const thisMonthEvents = eventsData.slice(4, 6)
+const pastEvents = eventsData.slice(6, 7)
+
+function EventCard({ event }: { event: typeof eventsData[0] }) {
+  return (
+    <Link href={`/events/${event.id}`} className="hover-zoom">
+      <Card className="h-full bg-card">
+        <div className="relative h-48 w-full">
+          <Image
+            src={event.image}
+            alt={event.name}
+            fill
+            priority
+            className="object-cover rounded-t-lg"
+          />
+        </div>
+        <CardHeader>
+          <CardTitle>{event.name}</CardTitle>
+          <CardDescription>
+            {event.description}
+            <div className="flex items-center gap-2 mt-2">
+              <CalendarIcon className="h-4 w-4" />
+              <span>{event.date}</span>
+              <ClockIcon className="h-4 w-4 ml-2" />
+              <span>{event.time}</span>
+            </div>
+            <div className="mt-2 text-primary font-medium">
+              {event.club}
+            </div>
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
+  )
+}
 
 export default function EventsPage() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Campus Events</h1>
-        <p className="text-muted-foreground mb-6">Discover upcoming events hosted by university clubs</p>
-        <div className="flex max-w-md gap-2">
-          <div className="relative flex-1">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input type="search" placeholder="Search events..." className="pl-8" />
-          </div>
-          <Button>Search</Button>
-        </div>
-      </header>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Upcoming Events</h1>
+      <p className="text-gray-600 mb-8 max-w-3xl">
+        Stay updated with the latest events and activities happening across all clubs.
+      </p>
 
-      <Tabs defaultValue="upcoming" className="mb-8">
+      <Tabs defaultValue="this-week" className="mb-8">
         <TabsList>
-          <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
           <TabsTrigger value="this-week">This Week</TabsTrigger>
           <TabsTrigger value="this-month">This Month</TabsTrigger>
           <TabsTrigger value="past">Past Events</TabsTrigger>
         </TabsList>
-        <TabsContent value="upcoming" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allEvents.map((event) => (
-              <Link href={`/events/${event.id}`} key={event.id}>
-                <Card className="h-full hover:shadow-md transition-shadow">
-                  <CardHeader className="p-0">
-                    <div className="h-48 w-full relative">
-                      <img
-                        src={event.image || "/placeholder.svg"}
-                        alt={event.name}
-                        className="h-full w-full object-cover rounded-t-lg"
-                      />
-                      <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                        {event.date}
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <CardTitle>{event.name}</CardTitle>
-                    <div className="text-sm text-muted-foreground mt-1">Hosted by {event.club}</div>
-                    <CardDescription className="mt-2">{event.description}</CardDescription>
-                  </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <div className="text-sm text-muted-foreground">{event.location}</div>
-                    <div className="text-sm font-medium">{event.time}</div>
-                  </CardFooter>
-                </Card>
-              </Link>
+        <TabsContent value="this-week" className="mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {thisWeekEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
             ))}
           </div>
         </TabsContent>
-        {/* Other tab contents would be similar but filtered by date */}
+        <TabsContent value="this-month" className="mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {thisMonthEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </TabsContent>
+        <TabsContent value="past" className="mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pastEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   )
