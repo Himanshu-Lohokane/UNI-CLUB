@@ -4,7 +4,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // If POSTGRES_PRISMA_URL exists (production), use it; otherwise use DATABASE_URL (local)
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  // Add shadowDatabaseUrl for development
+  shadowDatabaseUrl = env("DATABASE_URL")
 }
 
 model User {
