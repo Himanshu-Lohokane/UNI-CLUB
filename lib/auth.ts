@@ -83,4 +83,17 @@ export const authOptions: NextAuthOptions = {
       }
     },
   },
+}
+
+export const authConfig = {
+    callbacks: {
+        // Your existing callbacks here if any
+    },
+    providers: [], // Your providers will be added in the auth configuration
+}
+
+// This will automatically use the correct URL in both development and production
+export const getBaseUrl = () => {
+    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
+    return process.env.NEXTAUTH_URL || "http://localhost:3000"
 } 
