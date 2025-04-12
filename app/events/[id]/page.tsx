@@ -10,15 +10,224 @@ import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { eventsData } from "@/lib/data"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { toast } from "sonner"
+import { z } from "zod"
+
+const rsvpFormSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }),
+  age: z.string().refine((val) => !isNaN(Number(val)) && Number(val) >= 18, {
+    message: "Age must be at least 18.",
+  }),
+  dietaryRestrictions: z.string().optional(),
+  specialRequirements: z.string().optional(),
+});
+
+function RSVPForm({ event, onSubmit }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    age: "",
+    dietaryRestrictions: "",
+    specialRequirements: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error for this field when user types
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: null }));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Validate form data
+      rsvpFormSchema.parse(formData);
+      
+      // If validation passes, submit the form
+      setTimeout(() => {
+        setIsSubmitting(false);
+        onSubmit(formData);
+        setOpen(false);
+        toast.success("RSVP submitted successfully!", {
+          description: "The event organizers will contact you shortly."
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          age: "",
+          dietaryRestrictions: "",
+          specialRequirements: "",
+        });
+      }, 1000);
+    } catch (error) {
+      setIsSubmitting(false);
+      
+      // Handle validation errors
+      if (error instanceof z.ZodError) {
+        const newErrors = {};
+        error.errors.forEach(err => {
+          const field = err.path[0];
+          newErrors[field] = err.message;
+        });
+        setErrors(newErrors);
+      }
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="w-full md:w-auto">RSVP to Event</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
+          <DialogTitle>RSVP for {event.name}</DialogTitle>
+          <DialogDescription>
+            Please provide your details to register for this event. The organizers will contact you with further information.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Full Name <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                className="col-span-3"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && (
+                <p className="col-span-4 col-start-2 text-sm text-red-500">{errors.name}</p>
+              )}
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="email" className="text-right">
+                Email <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Your email address"
+                className="col-span-3"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && (
+                <p className="col-span-4 col-start-2 text-sm text-red-500">{errors.email}</p>
+              )}
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="phone" className="text-right">
+                Phone <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="phone"
+                name="phone"
+                placeholder="Your phone number"
+                className="col-span-3"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              {errors.phone && (
+                <p className="col-span-4 col-start-2 text-sm text-red-500">{errors.phone}</p>
+              )}
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="age" className="text-right">
+                Age <span className="text-red-500">*</span>
+              </Label>
+              <Input
+                id="age"
+                name="age"
+                type="number"
+                placeholder="Your age"
+                className="col-span-3"
+                value={formData.age}
+                onChange={handleChange}
+              />
+              {errors.age && (
+                <p className="col-span-4 col-start-2 text-sm text-red-500">{errors.age}</p>
+              )}
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="dietaryRestrictions" className="text-right">
+                Dietary Restrictions
+              </Label>
+              <Input
+                id="dietaryRestrictions"
+                name="dietaryRestrictions"
+                placeholder="Any dietary restrictions"
+                className="col-span-3"
+                value={formData.dietaryRestrictions}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="specialRequirements" className="text-right">
+                Special Requirements
+              </Label>
+              <Textarea
+                id="specialRequirements"
+                name="specialRequirements"
+                placeholder="Any special requirements or accommodations needed"
+                className="col-span-3"
+                value={formData.specialRequirements}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit RSVP"}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 export default function EventPage({ params }: { params: { id: string } }) {
   const eventId = React.use(params).id
   const event = eventsData.find((e) => e.id === eventId) || eventsData[0]
   const [isRsvpd, setIsRsvpd] = useState(false)
 
-  const toggleRsvp = () => {
-    setIsRsvpd(!isRsvpd)
-  }
+  const handleRsvpSubmit = (formData) => {
+    console.log("RSVP submitted:", formData);
+    setIsRsvpd(true);
+  };
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -62,9 +271,20 @@ export default function EventPage({ params }: { params: { id: string } }) {
                 <span>{event.attendees} attending</span>
               </div>
             </div>
-            <Button onClick={toggleRsvp} className="w-full md:w-auto" variant={isRsvpd ? "outline" : "default"}>
-              {isRsvpd ? "Cancel RSVP" : "RSVP to Event"}
-            </Button>
+            <div className="flex gap-3">
+              {isRsvpd ? (
+                <div className="flex gap-3">
+                  <Button variant="outline" className="w-full md:w-auto" onClick={() => setIsRsvpd(false)}>
+                    Cancel RSVP
+                  </Button>
+                  <Badge variant="outline" className="flex items-center h-10 px-4">
+                    You're attending this event
+                  </Badge>
+                </div>
+              ) : (
+                <RSVPForm event={event} onSubmit={handleRsvpSubmit} />
+              )}
+            </div>
           </div>
 
           <div className="space-y-6">
